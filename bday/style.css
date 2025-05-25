@@ -1,12 +1,36 @@
-const flowersContainer = document.querySelector('.flowers');
+const canvas = document.getElementById("background");
+const ctx = canvas.getContext("2d");
 
-function createFlower() {
-  const flower = document.createElement('div');
-  flower.classList.add('flower');
-  flower.style.left = Math.random() * 100 + 'vw';
-  flower.style.animationDuration = 5 + Math.random() * 5 + 's';
-  flowersContainer.appendChild(flower);
-  setTimeout(() => flower.remove(), 10000);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let flowers = [];
+
+for (let i = 0; i < 100; i++) {
+  flowers.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 4 + 1,
+    color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+    dx: (Math.random() - 0.5) * 2,
+    dy: (Math.random() - 0.5) * 2
+  });
 }
 
-setInterval(createFlower, 300);
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  flowers.forEach(f => {
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+    ctx.fillStyle = f.color;
+    ctx.fill();
+    f.x += f.dx;
+    f.y += f.dy;
+
+    if (f.x < 0 || f.x > canvas.width) f.dx *= -1;
+    if (f.y < 0 || f.y > canvas.height) f.dy *= -1;
+  });
+  requestAnimationFrame(animate);
+}
+
+animate();
