@@ -3,32 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday</title>
+  <title>Happy Birthday!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background music -->
-  <audio autoplay loop>
-    <source src="happy-birthday.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Main container -->
-  <div class="container">
-    <h1>Happy Birthday, [Beta]!</h1>
-
-    <div class="message">
-      <p>Today is all about <strong>you</strong>!</p>
-      <p>May your day be filled with laughter, joy, and the warmth of your loved ones.</p>
-      <p>May all your dreams come true and your heart be forever young.</p>
-      <p>Thank you for being the beautiful soul you are — the world is brighter because of you!</p>
-      <p class="signature">— With love, [Your Name]</p>
-    </div>
-
-    <div class="flowers"></div>
-    <div class="mountains"></div>
+  <canvas id="background"></canvas>
+  <div class="message">
+    🎉 <br>
+    <h1>Happy Birthday, <span id="name">Friend</span>! 🎂</h1>
+    <p>Wishing you a day filled with love and joy!</p>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
