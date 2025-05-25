@@ -1,36 +1,18 @@
-const canvas = document.getElementById("background");
-const ctx = canvas.getContext("2d");
+const background = document.querySelector(".background");
+const emojis = ["🌸", "🌼", "💐", "🌺", "🌻", "🌷"];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function createFlower() {
+  const flower = document.createElement("span");
+  flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.animationDuration = 3 + Math.random() * 5 + "s";
+  flower.style.opacity = Math.random();
+  flower.style.fontSize = Math.random() * 20 + 20 + "px";
+  background.appendChild(flower);
 
-let flowers = [];
-
-for (let i = 0; i < 100; i++) {
-  flowers.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 4 + 1,
-    color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-    dx: (Math.random() - 0.5) * 2,
-    dy: (Math.random() - 0.5) * 2
-  });
+  setTimeout(() => {
+    flower.remove();
+  }, 8000);
 }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  flowers.forEach(f => {
-    ctx.beginPath();
-    ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-    ctx.fillStyle = f.color;
-    ctx.fill();
-    f.x += f.dx;
-    f.y += f.dy;
-
-    if (f.x < 0 || f.x > canvas.width) f.dx *= -1;
-    if (f.y < 0 || f.y > canvas.height) f.dy *= -1;
-  });
-  requestAnimationFrame(animate);
-}
-
-animate();
+setInterval(createFlower, 200);
