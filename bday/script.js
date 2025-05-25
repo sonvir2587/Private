@@ -15,4 +15,4 @@ function createFlower() {
   }, 8000);
 }
 
-setInterval(createFlower, 200);
+setInterval(createFlower, 250);
